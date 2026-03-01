@@ -19,8 +19,8 @@ public class BicicletaElectrica {
 public BicicletaElectrica(){
 	
 	this.id = contadorBicicletas++;
-	this.marca = "Generica";  //Valor por defecto
-	this.modelo = "Estandar"; //Valor por defecto
+	this.marca = "Generica";  // Default value
+	this.modelo = "Estandar"; // Default value
 	this.autonomiaMaxima = 50.0;
 	this.bateria = 100.0;
 	this.Propietario = null;
@@ -37,17 +37,17 @@ public BicicletaElectrica(String marca , String modelo , double autonomiaMaxima)
 	this.Propietario = null;
 }
 
-public void realizarRecorrido(){ // Método vacio porque pedimos los datos por el Scanner
+public void realizarRecorrido(){ // Empty method because we request data through the Scanner
 	
 	boolean consumoValido = false;
-	double km = 0; // Declaras por fuera para usarla en todo el método.
+	double km = 0; // Declared outside to use it throughout the method.
 
 	
 	do{
 		
 	try { 
 	
-	System.out.print("INTRODUCE EL RECORRIDO A REALIZAR (KM): ");
+	System.out.print("ENTER THE DISTANCE TO TRAVEL (KM): ");
 	km = entrada.nextInt();
 	
 	
@@ -55,22 +55,22 @@ public void realizarRecorrido(){ // Método vacio porque pedimos los datos por e
 	double consumo = (km / autonomiaMaxima) * 100;
 	
 	if (consumo > bateria){
-		System.out.println("ERROR NO HAY SUFICIENTE BATERIA INTENTALO NUEVAMENTE");	}
+		System.out.println("ERROR NOT ENOUGH BATTERY TRY AGAIN");	}
 	else { 
 		
-	consumoValido = true; // Rompe el bucle si consumo es menor que bateria.
+	consumoValido = true; // Breaks the loop if consumption is less than battery.
 		
-	this.bateria = this.bateria - consumo; //Actualizo los datos de la BATERIA y los KM
+	this.bateria = this.bateria - consumo; // I update the BATTERY and KM data
     this.kmRecorridos = this.kmRecorridos + km;
     
-    System.out.println("Recorrido realizado con éxito.");
-    System.out.println("Batería restante: " + this.bateria + "%");
-    System.out.println("Kilometros totales de la bici: " + this.kmRecorridos);
+    System.out.println("Journey completed successfully.");
+    System.out.println("Remaining battery: " + this.bateria + "%");
+    System.out.println("Total bike kilometers: " + this.kmRecorridos);
 	
 	}
 	} catch (Exception e) {
-        System.out.println("Error: Debes introducir un número válido.");
-        entrada.next(); // Limpiar el buffer del scanner para que no se encasquille
+        System.out.println("Error: You must enter a valid number.");
+        entrada.next(); // Clear the scanner buffer so it doesn't get stuck
         
 	} 
 	}while (!consumoValido);
@@ -82,36 +82,36 @@ public void realizarRecorrido(){ // Método vacio porque pedimos los datos por e
 public void cargarBateria(){
 	
 	boolean cargaValida = false;
-	double cantidadCarga = 0; // Variable temporal para el INPUT
+	double cantidadCarga = 0; // Temporary variable for the INPUT
 	
 	do {
 	
 		try {
-	System.out.print("INTRODUCE EL PORCENTAJE DE CARGA A REALIZAR(0-100): ");
+	System.out.print("ENTER THE CHARGE PERCENTAGE TO ADD (0-100): ");
 	cantidadCarga = entrada.nextDouble();
 
-	if (cantidadCarga > 0 && (this.bateria + cantidadCarga) <= 100) { cargaValida = true; //Si la cantidad cargada es mayor
-	// que 0 y la suma de la bateria actual y la cantidad de carga no es superior a 100 entonces TRUE  y sale del bucle.
+	if (cantidadCarga > 0 && (this.bateria + cantidadCarga) <= 100) { cargaValida = true; // If the charged amount is greater
+	// than 0 and the sum of the current battery and the charge amount is not greater than 100 then TRUE and exits the loop.
 	
 	this.bateria = this.bateria + cantidadCarga;
 	
-	// Realiza la suma y devuelve el porcentaje actual por pantalla
-    System.out.println("Carga realizada con éxito.");
-    System.out.println("Batería actual: " + this.bateria + "%");
+	// Performs the addition and returns the current percentage on screen
+    System.out.println("Charge completed successfully.");
+    System.out.println("Current battery: " + this.bateria + "%");
 	
 	}
 	
-	// Mensaje de error indicando que el número supera el máximo
+	// Error message indicating that the number exceeds the maximum
 	else {
-		System.out.println("La bateria actual de la bicicleta es " + this.bateria);
-		System.out.println("Espacio disponible: " + (100 - this.bateria) + "%");
-		System.out.println("ERROR: La cantidad no es válida o excede el 100% de capacidad.");
+		System.out.println("The bike's current battery is " + this.bateria);
+		System.out.println("Available space: " + (100 - this.bateria) + "%");
+		System.out.println("ERROR: The amount is invalid or exceeds 100% capacity.");
         }
 	
-	// Por si ponen letras
+	// In case they enter letters
 	}catch (Exception e) {
-	        System.out.println("Error: Debes introducir un número válido.");
-	        entrada.next(); // Limpiar el buffer del scanner para que no se encasquille
+        System.out.println("Error: You must enter a valid number.");
+        entrada.next(); // Clear the scanner buffer so it doesn't get stuck
 }
 		
 	}while (!cargaValida);
@@ -119,22 +119,22 @@ public void cargarBateria(){
 }
 
 
-public void asignarPropietario(Propietario p) { // Utilizo la clase Propietario donde tengo los datos que necesito  DNI, Nombre... 
+public void asignarPropietario(Propietario p) { // I use the Propietario class where I have the data I need DNI, Name... 
     if (this.Propietario == null) {
         this.Propietario = p;
-        System.out.println("Propietario asignado correctamente.");
+        System.out.println("Owner assigned successfully.");
     } else {
-        System.out.println("La bicicleta ya tiene propietario. Retíralo primero.");
+        System.out.println("The bike already has an owner. Remove them first.");
     }
 }
 	
 
-public void retirarPropietario() { // Misma logica en para asignar pero si no hay propietario salto directo al else si hay propietario = null
+public void retirarPropietario() { // Same logic as assigning but if there is no owner I jump straight to the else if owner = null
     if (this.Propietario != null) {
         this.Propietario = null;
-        System.out.println("Propietario retirado correctamente.");
+        System.out.println("Owner removed successfully.");
     } else {
-        System.out.println("La bicicleta no tiene propietario asignado.");
+        System.out.println("The bike has no assigned owner.");
     }
 }
 
@@ -142,26 +142,26 @@ public void comprobarBateria(){
 	
 	try {
 	
-	if(bateria > 50) {System.out.println("Bateria suficiente. El porcentaje de carga actual es " + bateria + "%");}
+	if(bateria > 50) {System.out.println("Sufficient battery. The current charge percentage is " + bateria + "%");}
 	
-    else if (bateria > 20 && bateria < 50) {System.out.println("Bateria moderada. El porcentaje de carga actual es " + bateria + "%");}
+    else if (bateria > 20 && bateria < 50) {System.out.println("Moderate battery. The current charge percentage is " + bateria + "%");}
 	
-    else if (bateria < 20){System.out.println("Bateria baja. El porcentaje de carga actual es " + bateria + "%");}
+    else if (bateria < 20){System.out.println("Low battery. The current charge percentage is " + bateria + "%");}
 	
 	}catch (Exception e) {
-        System.out.println("Error: Debes introducir un número válido.");
+        System.out.println("Error: You must enter a valid number.");
         entrada.next(); }
 }
 
-public static int getTotalBicicletas(){ // Método estatico para contar bicicletas
+public static int getTotalBicicletas(){ // Static method to count bicycles
 	
-	return(contadorBicicletas); // Solo devuelve el valor, sin modificarlo.
+	return(contadorBicicletas); // Only returns the value, without modifying it.
 }
 
-@Override //Etiqueta para confirmar que sustituyo el comportamiento de Java por el mio propio
+@Override // Tag to confirm that I override Java's behavior with my own
 
-public String toString() {  // Devuelve la informacion de la bicicleta
-    return " \nMarca: " + marca + " \nModelo: " + modelo + " \nBateria:  "+ bateria + " \nAutonomia: " + autonomiaMaxima +"\n" + Propietario ;
+public String toString() {  // Returns the bicycle's information
+    return " \nBrand: " + marca + " \nModel: " + modelo + " \nBattery:  "+ bateria + " \nAutonomy: " + autonomiaMaxima +"\n" + Propietario ;
 }
 
 
