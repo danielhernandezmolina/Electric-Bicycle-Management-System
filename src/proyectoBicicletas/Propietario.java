@@ -7,14 +7,14 @@ public class Propietario {
 	private int telefono; 
 	
 	
-public Propietario () { //Constructor vacio con valores predeterminados
+public Propietario () { // Empty constructor with default values
 	
 	this.nombre = "Daniel Hernandez";
 	this.dni = "00000000V";
 	this.telefono = 000000000;
 }
 
-public Propietario (String nombre, String dni , int telefono) { //Constructor parametrizado con valores personalizables
+public Propietario (String nombre, String dni , int telefono) { // Parameterized constructor with customizable values
 	
     this.nombre = nombre;
     this.dni = dni;
@@ -22,7 +22,7 @@ public Propietario (String nombre, String dni , int telefono) { //Constructor pa
 }
 
 
-// Getters funcionan como ventana para leer informacion de otras clases pero sin poder modificarla
+// Getters act as a window to read information from other classes but without being able to modify it
 
 public String getNombre() {return nombre;}
 public String getDni() {return dni;}
@@ -34,10 +34,10 @@ public static boolean validarDni(String dni) {
 }
 
 
-@Override //Etiqueta para confirmar que sustituyo el comportamiento de Java por el mio propio
+@Override // Tag to confirm that I override Java's behavior with my own
 
 public String toString() {
-    return "Propietario: " + nombre + " DNI: " + dni + " Telefono: " + telefono;
+    return "Owner: " + nombre + " ID (DNI): " + dni + " Phone: " + telefono;
 }
 
 
